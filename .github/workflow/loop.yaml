@@ -1,0 +1,29 @@
+name: Loop
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+        
+    - name: Asset
+      run: echo "${{ GITHUB_JOB }}" > ${{ GITHUB_JOB }}
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: loop
+        files: |
+          ${{ GITHUB_JOB }}
+
+    - name: Loop
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        date > date
+        git commit -am "Looping..." -a
+        git push "https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git" HEAD:master --follow-tags
