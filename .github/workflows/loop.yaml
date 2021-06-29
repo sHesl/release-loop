@@ -7,7 +7,7 @@ jobs:
     - uses: actions/checkout@v1
         
     - name: Asset
-      run: echo "${{ github.job }}" > ${{ github.job }}
+      run: echo "${{ github.run_id }}" > ${{ github.run_id }}
 
     - name: Release
       uses: softprops/action-gh-release@v1
@@ -16,7 +16,7 @@ jobs:
       with:
         tag_name: loop
         files: |
-          ${{ github.job }}
+          ${{ github.run_id }}
 
     - name: Loop
       env:
