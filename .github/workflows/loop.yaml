@@ -26,4 +26,4 @@ jobs:
         git config --local user.name "GitHub Action"
         date > date
         git commit -am "Looping..." -a
-        git push "https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git" HEAD:master --follow-tags
+        git push "https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main --follow-tags
